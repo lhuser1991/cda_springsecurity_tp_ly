@@ -22,7 +22,7 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "users")
-public class User implements UserDetails {
+public class Utilisateur implements UserDetails {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -42,7 +42,7 @@ public class User implements UserDetails {
     @JoinColumn(name = "id_role", referencedColumnName = "id", updatable = true)
     private Role role;
 
-    public User() {
+    public Utilisateur() {
         this.id = 0;
         this.nom = "";
         this.prenom = "";
@@ -52,7 +52,7 @@ public class User implements UserDetails {
         this.role = new Role();
     }
 
-    public User(String nom, String prenom, String email, String mdp, Role role, boolean actif) {
+    public Utilisateur(String nom, String prenom, String email, String mdp, Role role, boolean actif) {
         this.id = 0;
         this.nom = nom;
         this.prenom = prenom;
@@ -64,7 +64,7 @@ public class User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority(role.getName()));
+        return List.of(new SimpleGrantedAuthority(role.getNom()));
     }
 
     @Override
