@@ -9,8 +9,6 @@ import lombok.NoArgsConstructor;
 @Data
 public class Connexion {
 
-    private String nom;
-    private String prenom;
     private String email;
     private String mdp;
     

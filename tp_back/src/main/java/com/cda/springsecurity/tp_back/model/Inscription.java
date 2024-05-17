@@ -8,8 +8,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class Inscription {
-    
+    private String nom;
+    private String prenom;
     private String email;
     private String mdp;
-    
 }
