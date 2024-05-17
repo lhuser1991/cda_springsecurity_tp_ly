@@ -12,7 +12,8 @@ import com.cda.springsecurity.tp_back.model.Utilisateur;
 public interface UtilisateurRepository extends JpaRepository<Utilisateur,Long>{
 
     Optional<Utilisateur> findByEmail(String email);
-    Utilisateur findByRoleId(long idRole);
+    Optional<Utilisateur> findByRoleId(long idRole);
+    Utilisateur findByRoleNom(long nomRole);
     List<Utilisateur> findAllByActif(boolean actif);
     boolean existsByEmail(String email);
     

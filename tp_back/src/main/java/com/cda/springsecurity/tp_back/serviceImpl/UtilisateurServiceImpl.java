@@ -45,5 +45,10 @@ public class UtilisateurServiceImpl implements UtilisateurService {
     public Utilisateur getByEmail(String email) {
         return utilisateurRepository.findByEmail(email).orElse(new Utilisateur());
     }
+
+    @Override
+    public Utilisateur getByRoleId(long idRole) {
+        return utilisateurRepository.findByRoleId(idRole).orElse(new Utilisateur());
+    }
     
 }

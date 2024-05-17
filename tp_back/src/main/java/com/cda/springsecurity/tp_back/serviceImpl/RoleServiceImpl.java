@@ -1,6 +1,7 @@
 package com.cda.springsecurity.tp_back.serviceImpl;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,6 +31,16 @@ public class RoleServiceImpl implements RoleService {
     @Override
     public Role getByNom(String nomRole) {
         return roleRepository.findByNom(nomRole).orElse(new Role());
+    }
+
+    @Override
+    public List<Role> getAll() {
+        return roleRepository.findAll();
+    }
+
+    @Override
+    public List<Role> saveAll(List<Role> listRole) {
+        return roleRepository.saveAll(listRole);
     }
     
 }

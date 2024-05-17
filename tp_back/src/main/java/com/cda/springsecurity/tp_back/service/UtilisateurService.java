@@ -14,4 +14,6 @@ public interface UtilisateurService {
 
     boolean existsByEmail(String email);
 
+    Utilisateur getByRoleId(long idRole);
+
 }
