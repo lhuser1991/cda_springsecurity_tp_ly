@@ -14,4 +14,9 @@ public class AdminController {
     public String helloAdmin() {
         return "Hello Admin !";
     }
+
+    @GetMapping("/goodbye")
+    public String goodbyeAdmin() {
+        return "Goodbye Admin !";
+    }
 }

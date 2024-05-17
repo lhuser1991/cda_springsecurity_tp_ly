@@ -10,6 +10,6 @@ import com.cda.springsecurity.tp_back.model.Role;
 @Repository
 public interface RoleRepository extends JpaRepository<Role,Long>{
     
-    Optional<Role> findByNom(String nomRole);
+    Optional<Role> findByName(String nomRole);
     
 }

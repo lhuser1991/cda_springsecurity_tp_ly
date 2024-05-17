@@ -17,12 +17,14 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
+@NoArgsConstructor
 @Data
 @Entity
 @Table(name = "users")
-public class Utilisateur implements UserDetails {
+public class User implements UserDetails {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -42,17 +44,7 @@ public class Utilisateur implements UserDetails {
     @JoinColumn(name = "id_role", referencedColumnName = "id", updatable = true)
     private Role role;
 
-    public Utilisateur() {
-        this.id = 0;
-        this.nom = "";
-        this.prenom = "";
-        this.email = "";
-        this.mdp = "";
-        this.actif = false;
-        this.role = new Role();
-    }
-
-    public Utilisateur(String nom, String prenom, String email, String mdp, Role role, boolean actif) {
+    public User(String nom, String prenom, String email, String mdp, Role role, boolean actif) {
         this.id = 0;
         this.nom = nom;
         this.prenom = prenom;
@@ -64,7 +56,7 @@ public class Utilisateur implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority(role.getNom()));
+        return List.of(new SimpleGrantedAuthority(role.getName()));
     }
 
     @Override

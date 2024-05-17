@@ -9,9 +9,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import com.cda.springsecurity.tp_back.model.Role;
-import com.cda.springsecurity.tp_back.model.Utilisateur;
+import com.cda.springsecurity.tp_back.model.User;
 import com.cda.springsecurity.tp_back.serviceImpl.RoleServiceImpl;
-import com.cda.springsecurity.tp_back.serviceImpl.UtilisateurServiceImpl;
+import com.cda.springsecurity.tp_back.serviceImpl.UserServiceImpl;
 
 @Component
 public class DataLoad implements CommandLineRunner {
@@ -20,7 +20,7 @@ public class DataLoad implements CommandLineRunner {
     private RoleServiceImpl roleServiceImpl;
 
     @Autowired
-    private UtilisateurServiceImpl utilisateurServiceImpl;
+    private UserServiceImpl utilisateurServiceImpl;
 
     public void run(String... args) {
         
@@ -28,8 +28,8 @@ public class DataLoad implements CommandLineRunner {
         if(allRole.size() == 0) {
             List<Role> listRole = new ArrayList<Role>();
 
-            Role adminRole = new Role(0, "ADMIN", "Administrateur", true, new ArrayList<Utilisateur>());
-            Role utilisateurRole = new Role(0, "UTILISATEUR", "Utilisateur", true, new ArrayList<Utilisateur>());
+            Role adminRole = new Role(0, "ADMIN", "Administrateur", true, new ArrayList<User>());
+            Role utilisateurRole = new Role(0, "USER", "Utilisateur", true, new ArrayList<User>());
 
             listRole.add(adminRole);
             listRole.add(utilisateurRole);
@@ -38,10 +38,10 @@ public class DataLoad implements CommandLineRunner {
         }
 
         Role adminRole = roleServiceImpl.getByNom("ADMIN");
-        Utilisateur adminUtilisateur = utilisateurServiceImpl.getByRoleId(adminRole.getId());
+        User adminUtilisateur = utilisateurServiceImpl.getByRoleId(adminRole.getId());
         if(adminUtilisateur.getId() == 0) {
             String encryptedAdminMdp = new BCryptPasswordEncoder().encode("admin");
-            Utilisateur newAdmin = new Utilisateur(0, "ADMIN", "admin", "admin@monmail.com", encryptedAdminMdp, true, adminRole);
+            User newAdmin = new User(0, "ADMIN", "admin", "admin@monmail.com", encryptedAdminMdp, true, adminRole);
             utilisateurServiceImpl.save(newAdmin);
         }
     }

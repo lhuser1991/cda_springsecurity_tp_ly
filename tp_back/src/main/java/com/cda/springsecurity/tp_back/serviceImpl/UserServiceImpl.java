@@ -6,15 +6,15 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.cda.springsecurity.tp_back.model.Utilisateur;
-import com.cda.springsecurity.tp_back.repository.UtilisateurRepository;
-import com.cda.springsecurity.tp_back.service.UtilisateurService;
+import com.cda.springsecurity.tp_back.model.User;
+import com.cda.springsecurity.tp_back.repository.UserRepository;
+import com.cda.springsecurity.tp_back.service.UserService;
 
 @Service
-public class UtilisateurServiceImpl implements UtilisateurService {
+public class UserServiceImpl implements UserService {
 
     @Autowired
-    private UtilisateurRepository utilisateurRepository;
+    private UserRepository utilisateurRepository;
 
     @Override
     public UserDetailsService userDetailsService() {
@@ -27,13 +27,13 @@ public class UtilisateurServiceImpl implements UtilisateurService {
     }
 
     @Override
-    public Utilisateur save(Utilisateur utilisateur) {
+    public User save(User utilisateur) {
         return utilisateurRepository.save(utilisateur);
     }
 
     @Override
-    public Utilisateur getById(long idUtilisateur) {
-        return utilisateurRepository.findById(idUtilisateur).orElse(new Utilisateur());
+    public User getById(long idUtilisateur) {
+        return utilisateurRepository.findById(idUtilisateur).orElse(new User());
     }
 
     @Override
@@ -42,13 +42,13 @@ public class UtilisateurServiceImpl implements UtilisateurService {
     }
 
     @Override
-    public Utilisateur getByEmail(String email) {
-        return utilisateurRepository.findByEmail(email).orElse(new Utilisateur());
+    public User getByEmail(String email) {
+        return utilisateurRepository.findByEmail(email).orElse(new User());
     }
 
     @Override
-    public Utilisateur getByRoleId(long idRole) {
-        return utilisateurRepository.findByRoleId(idRole).orElse(new Utilisateur());
+    public User getByRoleId(long idRole) {
+        return utilisateurRepository.findByRoleId(idRole).orElse(new User());
     }
     
 }

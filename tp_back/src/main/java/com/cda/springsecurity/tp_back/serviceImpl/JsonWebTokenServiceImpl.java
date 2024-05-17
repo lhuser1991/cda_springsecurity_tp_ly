@@ -7,7 +7,7 @@ import java.util.function.Function;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
-import com.cda.springsecurity.tp_back.model.Utilisateur;
+import com.cda.springsecurity.tp_back.model.User;
 import com.cda.springsecurity.tp_back.service.JsonWebTokenService;
 
 import io.jsonwebtoken.Claims;
@@ -20,7 +20,7 @@ import io.jsonwebtoken.security.Keys;
 public class JsonWebTokenServiceImpl implements JsonWebTokenService {
     
     @Override
-    public String generateToken(Utilisateur userDetails) {
+    public String generateToken(User userDetails) {
 
         return Jwts.builder()
             .setSubject(userDetails.getUsername())

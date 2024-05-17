@@ -24,7 +24,7 @@ public class Role {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    private String nom;
+    private String name;
 
     private String description;
 
@@ -32,14 +32,14 @@ public class Role {
 
     @JsonIgnore
     @OneToMany(mappedBy = "role")
-    private List<Utilisateur> listUser;
+    private List<User> listUser;
 
     public Role() {
         this.id = 0;
-        this.nom = "";
+        this.name = "";
         this.description = "";
         this.actif = false;
-        this.listUser = new ArrayList<Utilisateur>();
+        this.listUser = new ArrayList<User>();
     }
 
     /**
@@ -49,10 +49,10 @@ public class Role {
      */
     public Role(String nom, String description) {
         this.id = 0;
-        this.nom = nom;
+        this.name = nom;
         this.description = description;
         this.actif = true;
-        this.listUser = new ArrayList<Utilisateur>();
-    } 
+        this.listUser = new ArrayList<User>();
+    }
     
 }

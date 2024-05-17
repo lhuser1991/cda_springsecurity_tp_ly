@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import com.cda.springsecurity.tp_back.service.JsonWebTokenService;
-import com.cda.springsecurity.tp_back.service.UtilisateurService;
+import com.cda.springsecurity.tp_back.service.UserService;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -27,7 +27,7 @@ public class JwtAuthentificationFilter extends OncePerRequestFilter {
     private JsonWebTokenService jwtService;
     
     @Autowired
-    private UtilisateurService userService;
+    private UserService userService;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)throws ServletException, IOException {
@@ -46,7 +46,6 @@ public class JwtAuthentificationFilter extends OncePerRequestFilter {
 
         if(StringUtils.isNotEmpty(userEmail) && SecurityContextHolder.getContext().getAuthentication() == null) {
             UserDetails userDetails = userService.userDetailsService().loadUserByUsername(userEmail);
-
             if(jwtService.isTokenValid(jwt, userDetails)) {
                 SecurityContext securityContext = SecurityContextHolder.createEmptyContext();
                 UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());

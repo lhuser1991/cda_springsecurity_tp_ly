@@ -16,14 +16,14 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import com.cda.springsecurity.tp_back.service.UtilisateurService;
+import com.cda.springsecurity.tp_back.service.UserService;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration {
 
     @Autowired
-    private UtilisateurService userService;
+    private UserService userService;
 
     @Autowired
     private JwtAuthentificationFilter jwtAuthentificationFilter;
@@ -35,9 +35,8 @@ public class SecurityConfiguration {
             .authorizeHttpRequests((request) -> request 
                 .requestMatchers("/springsecuritytp/authentication/**").permitAll()
                 .requestMatchers("/springsecuritytp/common/**").authenticated()
-                .requestMatchers("/springsecuritytp/admin").hasAnyRole("ADMIN")
-                .requestMatchers("/springsecuritytp/utilisateur").hasAnyRole("UTILISATEUR")
-
+                .requestMatchers("/springsecuritytp/admin/**").hasAnyRole("ADMIN")
+                .requestMatchers("/springsecuritytp/utilisateur/**").hasAnyRole("USER")
                 .anyRequest().authenticated()
             )
             .sessionManagement((manager) -> manager

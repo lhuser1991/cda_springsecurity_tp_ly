@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.cda.springsecurity.tp_back.model.Connexion;
 import com.cda.springsecurity.tp_back.model.JsonWebToken;
-import com.cda.springsecurity.tp_back.model.Utilisateur;
+import com.cda.springsecurity.tp_back.model.User;
 import com.cda.springsecurity.tp_back.service.ConnexionService;
 
 @Service
@@ -17,7 +17,7 @@ public class ConnexionServiceImpl implements ConnexionService {
     private AuthenticationManager authenticationManager;
 
     @Autowired
-    private UtilisateurServiceImpl utilisateurServiceImpl;
+    private UserServiceImpl utilisateurServiceImpl;
 
     @Autowired
     private JsonWebTokenServiceImpl jsonWebTokenServiceImpl;
@@ -26,14 +26,14 @@ public class ConnexionServiceImpl implements ConnexionService {
     public JsonWebToken connexion(Connexion connexion) {
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(connexion.getEmail(), connexion.getMdp()));
 
-        Utilisateur utilisateur = utilisateurServiceImpl.getByEmail(connexion.getEmail());
+        User utilisateur = utilisateurServiceImpl.getByEmail(connexion.getEmail());
 
         String jwt = jsonWebTokenServiceImpl.generateToken(utilisateur);
 
-        JsonWebToken JsonWebToken = new JsonWebToken();
-        JsonWebToken.setJwt(jwt);
+        JsonWebToken jsonWebToken = new JsonWebToken();
+        jsonWebToken.setJwt(jwt);
 
-        return JsonWebToken;
+        return jsonWebToken;
 
     }
     
