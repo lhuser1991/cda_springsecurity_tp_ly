@@ -1,13 +1,13 @@
-package com.cda.springsecurity.tp;
+package com.cda.springsecurity.tp_back;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class TpApplication {
+public class TpBackApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(TpApplication.class, args);
+		SpringApplication.run(TpBackApplication.class, args);
 	}
 
 }
